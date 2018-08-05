@@ -1,2 +1,1 @@
-
-Copyright (C) 2018 
+https://creativecommons.org/licenses/by-nc-sa/4.0/

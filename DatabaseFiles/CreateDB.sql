@@ -1,0 +1,39 @@
+USE master;
+GO
+
+CREATE DATABASE Calculator;
+GO
+
+USE Calculator;
+GO
+
+SET DateFormat dmy;
+
+CREATE TABLE [user] (
+userID INTEGER IDENTITY(1,1) 
+	CONSTRAINT PK_userID PRIMARY KEY,
+name NVARCHAR(50) NOT NULL,
+email NVARCHAR(320) NOT NULL,
+pwd NVARCHAR(255) NOT NULL,
+gender VARCHAR(1),
+birthdate DATETIME,
+);
+GO
+
+CREATE TABLE Measure (
+measureID INTEGER IDENTITY(1,1)
+	CONSTRAINT PK_measureID PRIMARY KEY,
+[date] DATETIME
+	CONSTRAINT DF_measure_date DEFAULT ((CURRENT_TIMESTAMP)) 
+);
+GO
+
+CREATE TABLE MeasureType (
+measureTypeID INTEGER IDENTITY(1,1)
+	CONSTRAINT PK_measureTypeID PRIMARY KEY,
+name NVARCHAR(30) NOT NULL,
+value DECIMAL(6,2) NOT NULL,
+measureID INTEGER 
+	CONSTRAINT FK_measureType_measure FOREIGN KEY REFERENCES Measure(measureID)
+);
+GO

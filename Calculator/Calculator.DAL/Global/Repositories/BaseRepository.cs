@@ -26,24 +26,41 @@ namespace Calculator.DAL.Global.Repositories
             get { return tableID; }
             set { tableID = value; }
         }
-        
-        public string ConnectioString
+
+        protected virtual string GetAllCommand
+        {
+            get { return string.Format("SELECT * FROM {0}", TableName); }
+        }
+
+        protected virtual string GetOneCommand
+        {
+            get { return string.Format("{0} WHERE {1} = @id", GetAllCommand, TableID); }
+        }
+
+        protected virtual string DeleteCommand
+        {
+            get { return string.Format("DELETE FROM {0} WHERE {1} = @id", TableName, TableID); }
+        }
+
+        public string ConnectionString
         {
             get { return string.Format($"Data Source={instanceServer};Initial Catalog={database};Integrated Security=SSPI;"); }
         }
 
-        public BaseRepository()
+        public BaseRepository(string table)
         {
-            this.db = new SqlConnection(ConnectioString);
+            this.TableName = $"[{table}]";
+            this.TableID = $"[{table}ID]";
+            this.db = new SqlConnection(ConnectionString);
         }
 
-        
+
         public List<TEntity> GetAll()
         {
             List<TEntity> Items = new List<TEntity>();
 
             SqlCommand cmd = db.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM {TableName}";
+            cmd.CommandText = GetAllCommand;
             SqlDataReader reader = cmd.ExecuteReader();
 
             db.Open();
@@ -57,7 +74,7 @@ namespace Calculator.DAL.Global.Repositories
 
             db.Close();
 
-            return Items; 
+            return Items;
         }
 
         public TEntity GetOne(Tkey id)
@@ -65,7 +82,7 @@ namespace Calculator.DAL.Global.Repositories
             TEntity item = default(TEntity);
 
             SqlCommand cmd = db.CreateCommand();
-            cmd.CommandText = $"SELECT @{id} FROM {TableName}";
+            cmd.CommandText = GetOneCommand;
             cmd.Parameters.AddWithValue("@id", id);
             SqlDataReader reader = cmd.ExecuteReader();
 
@@ -84,7 +101,7 @@ namespace Calculator.DAL.Global.Repositories
         public bool Delete(Tkey id)
         {
             SqlCommand cmd = db.CreateCommand();
-            cmd.CommandText = $"DELETE FROM {TableName} WHERE {TableID} = @{id}";
+            cmd.CommandText = DeleteCommand ;
             cmd.Parameters.AddWithValue("@id", id);
 
             db.Open();

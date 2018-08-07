@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Calculator.DAL.Mapper
 {
-    public class UserMapper
+    public static class UserMapper
     {
-        public G.User ToGlobal(C.User entity)
+        public static G.User ToGlobal(C.User entity)
         {
             return new G.User()
             {
@@ -24,7 +24,7 @@ namespace Calculator.DAL.Mapper
             };
         }
 
-        public List<G.User> ToGlobal(List<C.User> entities)
+        public static List<G.User> ToGlobal(List<C.User> entities)
         {
             List<G.User> users = new List<G.User>();
 
@@ -36,7 +36,7 @@ namespace Calculator.DAL.Mapper
             return users;
         }
 
-        public C.User ToCLient(G.User entity)
+        public static C.User ToClient(G.User entity)
         {
             return new C.User()
             {
@@ -50,13 +50,13 @@ namespace Calculator.DAL.Mapper
             };
         }
 
-        public List<C.User> ToClient(List<G.User> entities)
+        public static List<C.User> ToClient(List<G.User> entities)
         {
             List<C.User> users = new List<C.User>();
 
             foreach (G.User item in entities)
             {
-                users.Add(ToCLient(item));
+                users.Add(ToClient(item));
             }
 
             return users;

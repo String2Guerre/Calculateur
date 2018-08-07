@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Calculator.DAL.Mapper
 {
-    public class MeasureTypeMapper
+    public static class MeasureTypeMapper
     {
-        public G.MeasureType ToGlobal(C.MeasureType entity)
+        public static G.MeasureType ToGlobal(C.MeasureType entity)
         {
             return new G.MeasureType()
             {
@@ -21,7 +21,7 @@ namespace Calculator.DAL.Mapper
             };
         }
 
-        public List<G.MeasureType> ToGlobal(List<C.MeasureType> entities)
+        public static List<G.MeasureType> ToGlobal(List<C.MeasureType> entities)
         {
             List<G.MeasureType> measureTypes = new List<G.MeasureType>();
 
@@ -33,7 +33,7 @@ namespace Calculator.DAL.Mapper
             return measureTypes;
         }
 
-        public C.MeasureType ToClient(G.MeasureType entity)
+        public static C.MeasureType ToClient(G.MeasureType entity)
         {
             return new C.MeasureType()
             {
@@ -44,7 +44,7 @@ namespace Calculator.DAL.Mapper
             };
         }
 
-        public List<C.MeasureType> ToClient(List<G.MeasureType> entities)
+        public static List<C.MeasureType> ToClient(List<G.MeasureType> entities)
         {
             List<C.MeasureType> measureTypes = new List<C.MeasureType>();
 

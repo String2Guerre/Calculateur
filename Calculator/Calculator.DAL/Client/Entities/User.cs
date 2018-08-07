@@ -79,8 +79,7 @@ namespace Calculator.DAL.Client.Entities
         }
 
 
-        public User()
-        { }
+        public User() { }
 
         public User(string name, string email, string pwd)
         {

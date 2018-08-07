@@ -9,7 +9,7 @@ GO
 
 SET DateFormat dmy;
 
-CREATE TABLE [user] (
+CREATE TABLE [User] (
 userID INTEGER IDENTITY(1,1) 
 	CONSTRAINT PK_userID PRIMARY KEY,
 name NVARCHAR(50) NOT NULL,
@@ -17,6 +17,7 @@ email NVARCHAR(320) NOT NULL,
 pwd NVARCHAR(255) NOT NULL,
 gender VARCHAR(1),
 birthdate DATETIME,
+initialWeight DECIMAL(6,2)
 );
 GO
 

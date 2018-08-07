@@ -13,7 +13,7 @@ namespace Calculator.DAL.Global.Repositories
         private UserRepository instance;
         public UserRepository Instance
         {
-            get { return instance ?? (instance=new UserRepository()); }
+            get { return instance ?? (instance = new UserRepository()); }
         }
 
         public UserRepository() : base("User") { }
@@ -59,14 +59,15 @@ namespace Calculator.DAL.Global.Repositories
 
         protected override User ReaderToClient(SqlDataReader reader)
         {
-            return new User() {
+            return new User()
+            {
                 UserID = (int)reader["userID"],
-                Name=reader["name"].ToString(),
-                Email=reader["email"].ToString(),
-                Pwd=reader["pwd"].ToString(),
-                Gender=reader["gender"].ToString(),
-                Birthdate=Convert.ToDateTime(reader["birthdate"]),
-                InitialWeight=(double)reader["initialWeight"]
+                Name = reader["name"].ToString(),
+                Email = reader["email"].ToString(),
+                Pwd = reader["pwd"].ToString(),
+                Gender = reader["gender"].ToString(),
+                Birthdate = Convert.ToDateTime(reader["birthdate"]),
+                InitialWeight = (double)reader["initialWeight"]
             };
         }
     }

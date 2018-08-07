@@ -46,6 +46,7 @@
     <Compile Include="Client\Entities\MeasureType.cs" />
     <Compile Include="Client\Entities\User.cs" />
     <Compile Include="Client\Repositories\MeasureRepository.cs" />
+    <Compile Include="Client\Repositories\MeasureTypeRepository.cs" />
     <Compile Include="Client\Repositories\UserRepository.cs" />
     <Compile Include="Global\Entities\Measure.cs" />
     <Compile Include="Global\Entities\MeasureType.cs" />

@@ -42,13 +42,13 @@ namespace Calculator.DAL.Global.Repositories
         {
             SqlCommand cmd = db.CreateCommand();
             cmd.CommandText = $"UPDATE {TableName} SET name = @name, email = @email, pwd = @pwd, gender = @gender, birthdate = @birthdate, initialWeight = @initialWeight) WHERE {TableID} = @id;";
-            cmd.Parameters.AddWithValue("@id", entity.UserID);
             cmd.Parameters.AddWithValue("@name", entity.Name);
             cmd.Parameters.AddWithValue("@email", entity.Email);
             cmd.Parameters.AddWithValue("@pwd", entity.Pwd);
             cmd.Parameters.AddWithValue("@gender", entity.Gender);
             cmd.Parameters.AddWithValue("@birthdate", entity.Birthdate);
             cmd.Parameters.AddWithValue("@initialWeight", entity.InitialWeight);
+            cmd.Parameters.AddWithValue("@id", entity.UserID);
 
             db.Open();
             int isUpdated = (int)cmd.ExecuteScalar();

@@ -35,8 +35,8 @@ namespace Calculator.DAL.Global.Repositories
         {
             SqlCommand cmd = db.CreateCommand();
             cmd.CommandText = $"UPDATE {TableName} SET date = @date WHERE {TableID} = @id";
-            cmd.Parameters.AddWithValue("@id", entity.MeasureID);
             cmd.Parameters.AddWithValue("@date", entity.Date);
+            cmd.Parameters.AddWithValue("@id", entity.MeasureID);
 
             db.Open();
             int isUpdated = (int)cmd.ExecuteScalar();

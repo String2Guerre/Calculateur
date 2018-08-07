@@ -45,6 +45,8 @@
     <Compile Include="Client\Entities\Measure.cs" />
     <Compile Include="Client\Entities\MeasureType.cs" />
     <Compile Include="Client\Entities\User.cs" />
+    <Compile Include="Client\Repositories\MeasureRepository.cs" />
+    <Compile Include="Client\Repositories\UserRepository.cs" />
     <Compile Include="Global\Entities\Measure.cs" />
     <Compile Include="Global\Entities\MeasureType.cs" />
     <Compile Include="Global\Entities\User.cs" />
@@ -53,14 +55,14 @@
     <Compile Include="Global\Repositories\MeasureTypeRepository.cs" />
     <Compile Include="Global\Repositories\UserRepository.cs" />
     <Compile Include="Mapper\MeasureMapper.cs" />
+    <Compile Include="Mapper\MeasureTypeMapper.cs" />
     <Compile Include="Mapper\UserMapper.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Client\Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

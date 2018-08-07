@@ -46,6 +46,7 @@
     <Compile Include="Global\Entities\MeasureType.cs" />
     <Compile Include="Global\Entities\User.cs" />
     <Compile Include="Global\Repositories\BaseRepository.cs" />
+    <Compile Include="Global\Repositories\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

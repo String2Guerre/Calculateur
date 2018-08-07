@@ -20,14 +20,41 @@ namespace Calculator.DAL.Global.Repositories
 
 
 
-        public override bool Insert(User entity)
+        public override int Insert(User entity)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = db.CreateCommand();
+            cmd.CommandText = $"INSERT INTO {TableName} (name, email, pwd, gender, birthdate, initialWeight) OUTPUT INSERTED.{TableID} VALUES (@name, @email, @pwd, @gender, @birthdate, @initialWeight);";
+            cmd.Parameters.AddWithValue("@name", entity.Name);
+            cmd.Parameters.AddWithValue("@email", entity.Email);
+            cmd.Parameters.AddWithValue("@pwd", entity.Pwd);
+            cmd.Parameters.AddWithValue("@gender", entity.Gender);
+            cmd.Parameters.AddWithValue("@birthdate", entity.Birthdate);
+            cmd.Parameters.AddWithValue("@initialWeight", entity.InitialWeight);
+
+            db.Open();
+            int inserted = (int)cmd.ExecuteScalar();
+            db.Close();
+
+            return inserted;
         }
 
         public override bool Update(User entity)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = db.CreateCommand();
+            cmd.CommandText = $"UPDATE {TableName} SET name = @name, email = @email, pwd = @pwd, gender = @gender, birthdate = @birthdate, initialWeight = @initialWeight) WHERE {TableID} = @id;";
+            cmd.Parameters.AddWithValue("@id", entity.UserID);
+            cmd.Parameters.AddWithValue("@name", entity.Name);
+            cmd.Parameters.AddWithValue("@email", entity.Email);
+            cmd.Parameters.AddWithValue("@pwd", entity.Pwd);
+            cmd.Parameters.AddWithValue("@gender", entity.Gender);
+            cmd.Parameters.AddWithValue("@birthdate", entity.Birthdate);
+            cmd.Parameters.AddWithValue("@initialWeight", entity.InitialWeight);
+
+            db.Open();
+            int isUpdated = (int)cmd.ExecuteScalar();
+            db.Close();
+
+            return isUpdated > 0;
         }
 
         protected override User ReaderToClient(SqlDataReader reader)

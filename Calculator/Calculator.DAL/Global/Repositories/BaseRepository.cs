@@ -112,7 +112,7 @@ namespace Calculator.DAL.Global.Repositories
         }
 
         protected abstract TEntity ReaderToClient(SqlDataReader reader);
-        public abstract bool Insert(TEntity entity);
+        public abstract int Insert(TEntity entity);
         public abstract bool Update(TEntity entity);
     }
 }

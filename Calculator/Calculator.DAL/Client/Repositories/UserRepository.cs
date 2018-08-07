@@ -25,6 +25,31 @@ namespace Calculator.DAL.Client.Repositories
             UserRepo = new GR.UserRepository();
         }
 
-       
+
+
+        public C.User GetOne(int id)
+        {
+            return UserMapper.ToClient(UserRepo.GetOne(id));
+        }
+
+        public List<C.User> GetAll()
+        {
+            return UserMapper.ToClient(UserRepo.GetAll());
+        }
+
+        public int Insert(C.User entity)
+        {
+            return UserRepo.Insert(UserMapper.ToGlobal(entity));
+        }
+
+        public bool Update(C.User entity)
+        {
+            return UserRepo.Update(UserMapper.ToGlobal(entity));
+        }
+
+        public bool Delete(int id)
+        {
+            return UserRepo.Delete(id);
+        }
     }
 }
